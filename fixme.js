@@ -2,69 +2,97 @@
 // DO NOT CHANGE THIS SECTION
 var adventuringParty = {
     wizard: {
-        name: "Gandalf",
-        class: "Wizard",
-        health: 43,
-        mana: 248,
-        weapons: [
+        name        : "Gandalf",
+        class       : "Wizard",
+        health      : 43,
+        mana        : 248,
+        weapons     : [
             { name: "Staff", damage: 5 },
             { name: "Dagger", damage: 1}
-        ]
+            ]
     },
     warrior: {
-        name: "Conan",
-        class: "Warrior",
-        health: 206,
-        mana: 0,
-        weapons: [
+        name        : "Conan",
+        class       : "Warrior",
+        health      : 206,
+        mana        : 0,
+        weapons     : [
             { name: "Axe", damage: 50 },
-            { name: "Bow", arrow: [
-                { name: "+1 Arrows of Punishing", damage: 40, qty: 3},
-                { name: "Wooden Arrows", damage: 10, qty: 4}
-            ]}
-        ]
+            { name: "Bow", arrow    : [
+                    { name: "+1 Arrows of Punishing", damage: 40, qty: 3},
+                    { name: "Wooden Arrows", damage: 10, qty: 4}
+                    ]}
+            ]
     }
 }
 
 // MAKE CHANGES AFTER THIS
 
 // This function lists all characters in the party
-function listCharacters() {
+// function listCharacters(party) {
+//     console.log("Characters:");
+//     for(obj in party) {
+//         console.log(" * " + party[obj].name);
+//     )
+// }
+// Corrected to
+function listCharacters(party) {
     console.log("Characters:");
-    for(obj in party) {
-        console.log(" * " + party[obj].name);
-    )
+    for (var Object in party) {
+        var hero = Object;
+        console.log(" * " + party[hero].name);
+        //console.log(" * " + adventuringParty.Object.name);
+    }
 }
 
 // This function should list all weapons for the character
+// function listWeapons(character) {
+//     console.log("Listing weapons for " + character.name + ":");
+//     for(i in character.weapons) {
+//         var weapon = character.weapons[i];
+//         console.log(" * " . weapon[name]);
+//     }
+// } 
+// Corrected to
 function listWeapons(character) {
-    console.log("Listing weapons for " + character.name + ":");
-    for(i in character.weapons) {
-        var weapon = character.weapons[i];
-        console.log(" * " . weapon[name]);
+    console.log("Listing weapons for " + adventuringParty[character].name + ":");
+    for (var i in adventuringParty[character].weapons) {
+        var weapon = adventuringParty[character].weapons[i].name;
+        console.log(" * " + weapon);
     }
 }
 
 // This function should attack with the specified weapon
 // It uses the weapon damage from the object to determine the maximum damage of this weapon
+// function weaponAttack(character, weaponName) {
+//     console.log(character.name + " attacks with his " + weaponName);
+//     var maxDamage;
+//     for(i in character.weapons) {
+//         var weapon = character.weapons[i];
+//         if(weapon.name == weaponName.toUpperCase()) {
+//             maxDamage = weapon.damage;
+//         }
+//     }
+//     console.log("He hits for " + Math.round( Math.random() * maxDamage ) + " damage");
+// }
+// Corrected to
 function weaponAttack(character, weaponName) {
-    console.log(character.name + " attacks with his " + weaponName);
+    console.log(adventuringParty[character].name + " attacks with his " + weaponName);
     var maxDamage;
-    for(i in character.weapons) {
-        var weapon = character.weapons[i];
-        if(weapon.name == weaponName.toUpperCase()) {
-            maxDamage = weapon.damage;
+    for (var i in adventuringParty[character].weapons) {
+        if (adventuringParty[character].weapons[i].name.toUpperCase() == weaponName.toUpperCase()) {
+            maxDamage = adventuringParty[character].weapons[i].damage;
         }
     }
-    console.log("He hits for " + Math.round( Math.random() * maxDamage ) + " damage");
+    console.log("He hits for " + Math.round(Math.random() * maxDamage) + " damage");
 }
 
 // Run the functions
 listCharacters(adventuringParty);
-listWeapons(wizard);
-listWeapons(warrior);
-weaponAttack("Warrior", "axe");
-weaponAttack("Wizard", "STAFF");
+listWeapons("wizard");
+listWeapons("warrior");
+weaponAttack("warrior", "axe");
+weaponAttack("wizard", "STAFF");
 
 
 /*
